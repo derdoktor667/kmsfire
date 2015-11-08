@@ -30,7 +30,7 @@ case "$1" in
 		;;
 	
 	stop) 
-		kmspid=`ps -ef |grep "py-KMS"|grep "python"|awk '{print $2}'`
+		kmspid=`ps -ef |grep "kmsfire"|grep "python"|awk '{print $2}'`
 		if [ ! -z "$kmspid" ]; then
 		echo "Stopping KMS v6 emulator !"
 		kill -9 $kmspid
@@ -44,7 +44,7 @@ case "$1" in
 		;;
 	
 	status) 
-		kmspid=`ps -ef |grep "py-KMS"|grep "python"|awk '{print $2}'`
+		kmspid=`ps -ef |grep "kmsfire"|grep "python"|awk '{print $2}'`
 		if [ -z "$kmspid" ]; then
 		echo "KMS : not running."
 		else
