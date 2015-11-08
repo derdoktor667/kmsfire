@@ -1,0 +1,60 @@
+#!/bin/sh
+########################################################################
+# Start the py-KMS Server on Green Port 1688
+#
+# Description : Start the py-KMS Server on Green Port 1688
+#
+# Authors     : Wastl Kraus - derdoktor667@gmail.com
+#
+# Version     : 01.00
+#
+# Notes       :
+#
+########################################################################
+
+. /etc/sysconfig/rc
+. $rc_functions
+
+HOMEDIR=/opt/py-KMS
+DAEMON=/usr/bin/python
+config=$HOMEDIR/server.py
+
+case "$1" in
+	start) 
+		if [ -f $config ]; then
+		echo "Starting KMS v6 emulator ..."
+		$DAEMON -u $config 10.1.50.1 1688 1>> $HOMEDIR/kms.log &2>> $HOMEDIR/kms_err.log
+			else
+			echo "Couldn't start KMS v6 emulator"
+		fi
+		;;
+	
+	stop) 
+		kmspid=`ps -ef |grep "py-KMS"|grep "python"|awk '{print $2}'`
+		if [ ! -z "$kmspid" ]; then
+		echo "Stopping KMS v6 emulator !"
+		kill -9 $kmspid
+		fi
+		;;
+		
+	restart)
+		$0 stop
+		sleep 1
+		$0 start
+		;;
+	
+	status) 
+		kmspid=`ps -ef |grep "py-KMS"|grep "python"|awk '{print $2}'`
+		if [ -z "$kmspid" ]; then
+		echo "KMS : not running."
+		else
+		echo "KMS : running (pid $kmspid)"
+		fi
+		;;
+	
+	*)
+		echo "Usage: $0 {start|stop|restart|status}"
+		exit 1
+		;;
+		
+esac
