@@ -15,7 +15,7 @@
 . /etc/sysconfig/rc
 . $rc_functions
 
-HOMEDIR=/opt/py-KMS
+HOMEDIR=/opt/kmsfire
 DAEMON=/usr/bin/python
 config=$HOMEDIR/server.py
 
