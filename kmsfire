@@ -6,7 +6,7 @@
 #
 # Authors     : Wastl Kraus - derdoktor667@gmail.com
 #
-# Version     : 01.00
+# Version     : 01.01
 #
 # Notes       :
 #
@@ -23,7 +23,7 @@ case "$1" in
 	start) 
 		if [ -f $config ]; then
 		echo "Starting KMS v6 emulator ..."
-		$DAEMON -u $config 10.1.50.1 1688 1>> $HOMEDIR/kms.log &2>> $HOMEDIR/kms_err.log
+		$DAEMON -u $config 192.168.188.1 1688 1>> $HOMEDIR/kms.log &2>> $HOMEDIR/kms_err.log
 			else
 			echo "Couldn't start KMS v6 emulator"
 		fi
